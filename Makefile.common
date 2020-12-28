@@ -13,9 +13,10 @@ S_VER_REL  = J
 # TARGET_ARCH = FREEBSD_MPICH
 # TARGET_ARCH = BEOWULF_LINUX_LAM
 # TARGET_ARCH = LINUX_MPICH_P4
-TARGET_ARCH = LINUX64_SMP
+# TARGET_ARCH = LINUX64_SMP
 # TARGET_ARCH = LINUX_MPICH_MYRI
 # TARGET_ARCH = LINUX_LAM
+TARGET_ARCH = WIN10
 
 # Decide how to pass messages between nodes
 _MP_METHOD    = _MP_MPI
@@ -50,7 +51,11 @@ ZIP            = gzip
 # MAKE       = make --no-print-directory
 # endif
 
-MAKE       = gmake --no-print-directory
+MAKE       = make --no-print-directory
+
+ifeq (,$(findstring WIN,$(TARGET_ARCH)))
+MAKE       = make --no-print-directory
+endif
 
 export 
 

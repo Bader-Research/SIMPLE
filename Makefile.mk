@@ -7,8 +7,13 @@ LIBSIMPLE_RELPATH 	:= $(SIMPLE_DIR)/$(LIB_DIR)/$(LIBSIMPLE)
 
 CFLAGS1     		:= $(CFLAGS) -I$(SIMPLE_DIR)/$(INC_DIR) \
 			   $(CFLAGS_SPRNG)
+ifeq ($(TARGET_ARCH),WIN10)
+LIBS1       		:= -L$(SIMPLE_DIR)/$(LIB_DIR) $(LIBS) $(THR_LIB) \
+			   $(LIBS_SPRNG) $(MPI_LIBDIR)/msmpi.lib
+else
 LIBS1       		:= -L$(SIMPLE_DIR)/$(LIB_DIR) $(LIBS) $(THR_LIB) \
 			   $(LIBS_SPRNG)
+endif  
 
 SIMPLELIBSRCS		:= simple.c smp_node.c types.c alg_random.c alg_load.c simple-f.c umd.c umd-f.c
 SIMPLELIBOBJS  		:= $(SIMPLELIBSRCS:.c=.o)

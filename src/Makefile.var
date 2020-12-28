@@ -466,7 +466,7 @@ endif # LINUX_LAM
 
 ##################################################################
 #                                                                #
-# LINUX64_SMP                                                      #
+# LINUX64_SMP                                                    #
 #                                                                #
 ##################################################################
 ifeq ($(TARGET_ARCH),LINUX64_SMP)
@@ -493,6 +493,37 @@ F77         = f77
 
 ARZ         =
 endif # LINUX64_SMP
+
+
+##################################################################
+#                                                                #
+# WIN10                                                          #
+#                                                                #
+##################################################################
+ifeq ($(TARGET_ARCH),WIN10)
+
+MPI_DIR     = C:/Program\ Files\ \(x86\)/Microsoft\ SDKs/MPI
+MPI_INC     = $(MPI_DIR)/Include
+MPI_LIBDIR  = $(MPI_DIR)/Lib/x64
+MPI_LIB     = -L$(MPI_LIBDIR)
+MPI_CC      = gcc
+# MPI_CXX     = $(MPI_DIR_S)/bin/mpiCC
+# MPI_F77     = $(MPI_DIR_S)/bin/mpif77
+O_LEVEL     = 2
+
+THR_DIR     = /usr/lib64
+THR_INC     = /usr/include
+CFLAGS_GEN  = $(OPT) -D$(TARGET_ARCH) 
+CFLAGS_MPI  = -D$(_MP_METHOD) -I$(MPI_INC)
+CFLAGS_THR  = -I$(THR_INC) 
+THR_LIB     = -L$(THR_DIR) -lpthread
+# Check this:
+CC          = gcc
+CXX         = g++
+#F77         = f77
+
+ARZ         =
+endif # WIN10
 
 
 export

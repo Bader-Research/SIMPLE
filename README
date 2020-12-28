@@ -30,26 +30,22 @@ Instructions
 
 	set path = ($path $MPIHOME/bin )
 
-1. Unpack the gzipped-tar file:
-
-	% gzcat simple-XXX.tar.gz | tar xvf -
-
-2. Change directory into the simple directory:
+*) Change directory into the simple directory:
 
 	% cd simple-XXX
 
-3. [OPTIONAL] Install the SPRNG 2.0 library from
+*) [OPTIONAL] Install the SPRNG 2.0 library from
 	      http://sprng.cs.fsu.edu/RNG
         In "make.CHOICES", set the proper "PLAT",
 	Comment out PMLCGDEF and GMPLIB.
 
-4. Edit the file "Makefile.common"
+*) Edit the file "Makefile.common"
    A.) Uncomment your platform (TARGET_ARCH).
    B.) Select UMD or MPI as the message passing method (_MP_METHOD).
    C.) Set the thread-safe pseudo-random number generator to
        _RAND = SPRNG   (or to NONE)
 
-5. Edit the file "src/Makefile.var"
+*) Edit the file "src/Makefile.var"
    A.) Locate the section for the (TARGET_ARCH) selected above.
    B.) Set the following variables properly:
        MPI:      MPI implementation
@@ -65,20 +61,25 @@ Instructions
        ARZ:      Set to "Z" if 'ar' can compress library
    C.) [OPTIONAL] Set the proper paths for SPRNG
 
-6. Build the SIMPLE library:
+*) On platforms without "makedepend", install "makedepend" from source code:
+   https://llg.cubic.org/docs/vc7.html
+   
+*) Build the SIMPLE library use GNU Make:
 
 	% gmake
+   or
+	% make
 
-7. [OPTIONAL] Test a sample program:
+*) [OPTIONAL] Test a sample program:
 	% gmake testprog
 
-8. [OPTIONAL] Test a sample SMP-only program:
+*) [OPTIONAL] Test a sample SMP-only program:
 	% gmake testsmp
 
-7. [OPTIONAL] Test a sample program with SPRNG:
+*) [OPTIONAL] Test a sample program with SPRNG:
 	% gmake testsprng
 
-8. [OPTIONAL] Test a sample SMP-only SPRNG program:
+*) [OPTIONAL] Test a sample SMP-only SPRNG program:
 	% gmake testsprng_SMP
 
 --------------------------------------------------------------------

@@ -4,14 +4,18 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/time.h>		/* struct timeval */
+#ifndef WIN10
 #include <sys/resource.h>
+#endif
 #include <math.h>
 #include <string.h>
 
+#ifndef WIN10
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <netdb.h>
+#endif
 #include <fcntl.h>
 #include "umd.h"
 

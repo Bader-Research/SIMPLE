@@ -7,7 +7,9 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/time.h>		/* struct timeval */
+#ifndef WIN10
 #include <sys/resource.h>
+#endif
 #include <math.h>
 #include <string.h>
 #include "mpi.h"
